@@ -23,6 +23,7 @@ def best_crypto #La ou les crypto qui ont la plus grosse valeur.
   values = array_val
   zipped_hash = array_zipping
   puts "La cryptomonnaie qui a la plus grosse valeur est #{zipped_hash.max_by{|k,v| v}}"
+  puts " "
 end
 
 def worst_crypto
@@ -30,7 +31,26 @@ def worst_crypto
   values = array_val
   zipped_hash = array_zipping
   puts "La cryptomonnaie qui a la plus petite valeur est #{zipped_hash.min_by{|k,v| v}}"
+  puts " "
+end
+
+def bad_crypto
+  cryptocurrencies = array_crypto
+  values = array_val
+  zipped_hash = array_zipping
+  puts "Les cryptos qui valent moins de 6000 sont #{zipped_hash.select{|k,v| v < 6000}}."
+  puts " "
+end
+
+def best_bad_crypto
+  cryptocurrencies = array_crypto
+  values = array_val
+  zipped_hash = array_zipping
+  test = zipped_hash.select{|k,v| v < 6000}
+  puts "La meilleure des mauvaises crypto est #{test.max_by{|v| v}}."
 end
 
 best_crypto
 worst_crypto
+bad_crypto
+best_bad_crypto
