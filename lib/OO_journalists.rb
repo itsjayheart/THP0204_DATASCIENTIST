@@ -12,7 +12,7 @@ end
 #Quelle est le handle le plus court de cette liste?
 def array_shortest_handle
   journalists_twitter_handles = array
-  puts "Le handle Twitter le plus court de notre liste est #{journalists_twitter_handles.min{|a,b| a.size <=> b.size }}."
+  puts "Le compte Twitter de notre liste dont le pseudo est le plus court est #{journalists_twitter_handles.min{|a,b| a.size <=> b.size }}."
 end
 
 #Combien y-a-t'il de handle contenant 5 caractères (le @ ne compte pas pour un caractère)
@@ -25,19 +25,19 @@ def array_five_characters
       count += 1
       end
     end
-  puts "Il y a #{count} comptes Twitter contenant 5 caractères (on ne compte pas le @)." #(si possible: afficher les noms des comptes Twitter)
+  puts "Il y a #{count} comptes Twitter dont le pseudo contient 5 caractères (on ne compte pas le @)."
 end
 
- #Combien commencent par une majuscule (première lettre juste après le @) ?
+#Combien commencent par une majuscule (première lettre juste après le @) ?
 def start_maj
     count = 0
     journalists_twitter_handles = array
     journalists_twitter_handles.each do |i|
-      if i[1] =~ /[A-Z]/ # --ou-- if i[1] == i[1].upcase
+    if i[1] == i[1].upcase    # --ou-- if i[1] =~ /[A-Z]/
         count += 1
       end
     end
-    puts "Il y a #{count} comptes Twitter qui commencent par une majuscule."
+    puts "Il y a #{count} comptes Twitter dont le pseudo commence par une majuscule."
 end
 
 #Trie la liste de handle par ordre alphabétique.
@@ -62,7 +62,7 @@ end
 #Quelle est la position dans l'array de la personne @epenser ?
 def handle_position
 journalists_twitter_handles = array
-puts "La position dans l'array de la personne @epenser est #{journalists_twitter_handles.find_index("@epenser")} , et 3+7-3=7, et en cm c'est la taille de ton penis."
+puts "@epenser est le #{journalists_twitter_handles.find_index("@epenser")}ème compte Twitter de notre liste."
 end
 
 #Sors-moi une répartition des handle par taille de ces derniers (nombre de handle avec 1 caractère, nombre de handle avec 2 caractères, nombre de handle avec 3 caractères, etc)
@@ -71,13 +71,36 @@ def handle_short_to_strong
 end
 
 def perform
+  puts "Quelle information souhaitez-vous obtenir à propos de notre liste confidentielle de comptes Twitter de journalistes :"
+  puts "Si vous voulez connaître le nombre total de comptes Twitter que possède notre liste, tapez 1."
+  puts "Si vous voulez connaître le compte Twitter avec le pseudo le plus court, tapez 2."
+  puts "Si vous voulez connaître le nombre de comptes dont le pseudo contient 5 caractères, tapez 3."
+  puts "Si vous voulez connaître le nombre de comptes  dont le pseudo commence par une majuscule, tapez 4."
+  puts "Si vous voulez accéder à la liste de tous les comptes de la liste dans l'ordre alphabétique, tapez 5."
+  puts "Si vous voulez accéder à la liste de tous les comptes dont les pseudos sont rangés des plus courts aux plus longs, tapez 6."
+  puts "Si vous voulez connaître la position de @epenser dans notre liste, tapez 7."
+  puts "Si vous voulez avoir accès à une répartition des handles en fonction du nombre de leurs caractères, tapez 8."
+  print ">"
+  user_choice = gets.chomp
+  if user_choice == "1"
   array_size
+  elsif user_choice == "2"
   array_shortest_handle
+  elsif user_choice == "3"
   array_five_characters
+  elsif user_choice == "4"
   start_maj
+  elsif user_choice == "5"
   alphabetical_order
+  elsif user_choice == "6"
   handle_size
+  elsif user_choice == "7"
   handle_position
+  elsif user_choice == "8"
+  handle_short_to_strong
+  else
+    puts "Ce choix ne vous est pas proposé."
+  end
 end
 
 perform
